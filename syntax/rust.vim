@@ -57,6 +57,7 @@ syn keyword   rustExternCrate crate contained nextgroup=rustIdentifier,rustExter
 syn match   rustExternCrateString /".*"\_s*as/ contained nextgroup=rustIdentifier skipwhite transparent skipempty contains=rustString,rustOperator
 syn keyword   rustObsoleteExternMod mod contained nextgroup=rustIdentifier skipwhite skipempty
 
+syn match     rustImplIdent contains=rustIdentifierPrime "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match     rustIdentifier  contains=rustIdentifierPrime "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match     rustFuncName    "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 
@@ -117,10 +118,17 @@ syn keyword   rustBoolean     true false
 " If foo::bar changes to foo.bar, change this ("::" to "\.").
 " If foo::bar changes to Foo::bar, change this (first "\w" to "\u").
 syn match     rustModPath     "\w\(\w\)*::[^<]"he=e-3,me=e-3
+syn match     rustModPathCap  "\u\(\w\)*::[^<]"he=e-3,me=e-3
 syn match     rustModPathSep  "::"
 
 syn match     rustFuncCall    "\w\(\w\)*("he=e-1,me=e-1
 syn match     rustFuncCall    "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
+syn match     rustFuncParam   "\s\w\(\w\)*:\s"he=e-2,me=e-2
+syn match     rustFuncParam   "(\w\(\w\)*:\s"he=e-2,hs=s+1,me=e-2
+
+syn keyword   rustKeyword impl nextgroup=rustImplIdent skipwhite skipempty
+syn keyword   rustKeyword for nextgroup=rustImplIdent skipwhite skipempty
+syn keyword   rustKeyword pub nextgroup=rustFuncParam skipwhite skipempty
 
 " This is merely a convention; note also the use of [A-Z], restricting it to
 " latin identifiers rather than the full Unicode uppercase. I have not used
