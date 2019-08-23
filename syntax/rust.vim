@@ -124,7 +124,8 @@ syn match     rustModPathSep  "::"
 syn match     rustFuncCall    "\w\(\w\)*("he=e-1,me=e-1
 syn match     rustFuncCall    "\w\(\w\)*::<"he=e-3,me=e-3 " foo::<T>();
 syn match     rustFuncParam   "\s\w\(\w\)*:\s"he=e-2,me=e-2
-syn match     rustFuncParam   "(\w\(\w\)*:\s"he=e-2,hs=s+1,me=e-2
+syn match     rustFuncParam   "(\w\(\w\)*:\s"he=e-2,hs=s+1,me=e-2,ms=s+1
+syn match     rustFuncParam   "^\s*[_\-a-zA-Z]\([_\-a-zA-Z]\)*,$"he=e-1,me=e-1 contains=rustIdentifier
 
 syn keyword   rustKeyword impl nextgroup=rustImplIdent skipwhite skipempty
 syn keyword   rustKeyword for nextgroup=rustImplIdent skipwhite skipempty
