@@ -329,7 +329,7 @@ hi def link rustFuncName      Function
 hi def link rustFuncCall      Function
 hi def link rustShebang       Comment
 hi def link rustCommentLine   Comment
-hi def link rustCommentLineDoc SpecialComment
+hi def link rustCommentLineDoc Comment
 hi def link rustCommentLineDocLeader rustCommentLineDoc
 hi def link rustCommentLineDocError Error
 hi def link rustCommentBlock  rustCommentLine
