@@ -20,7 +20,7 @@ syn keyword   rustTypedef type nextgroup=rustIdentifier skipwhite skipempty
 syn keyword   rustStructure struct enum nextgroup=rustIdentifier skipwhite skipempty
 syn keyword   rustUnion union nextgroup=rustIdentifier skipwhite skipempty contained
 syn match rustUnionContextual /\<union\_s\+\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*/ transparent contains=rustUnion
-syn keyword   rustOperator    as
+syn keyword   rustAs          as
 syn keyword   rustExistential existential nextgroup=rustTypedef skipwhite skipempty contained
 syn match rustExistentialContextual /\<existential\_s\+type/ transparent contains=rustExistential,rustTypedef
 
@@ -57,7 +57,6 @@ syn keyword   rustExternCrate crate contained nextgroup=rustIdentifier,rustExter
 syn match   rustExternCrateString /".*"\_s*as/ contained nextgroup=rustIdentifier skipwhite transparent skipempty contains=rustString,rustOperator
 syn keyword   rustObsoleteExternMod mod contained nextgroup=rustIdentifier skipwhite skipempty
 
-syn match     rustImplIdent contains=rustIdentifierPrime "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match     rustIdentifier  contains=rustIdentifierPrime "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match     rustFuncName    "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 
@@ -307,6 +306,8 @@ hi def link rustFloat         Float
 hi def link rustArrowCharacter rustOperator
 hi def link rustOperator      Operator
 hi def link rustKeyword       Keyword
+hi def link rustAs            rustFuncParam
+hi def link rustFuncParam     Identifier
 hi def link rustDynKeyword    rustKeyword
 hi def link rustTypedef       Keyword " More precise is Typedef, but it doesn't feel right for Rust
 hi def link rustStructure     Keyword " More precise is Structure
