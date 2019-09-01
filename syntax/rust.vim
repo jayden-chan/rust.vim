@@ -127,14 +127,12 @@ syn match     rustFuncParam   "\s\w\(\w\)*:\s"he=e-2,hs=s+1
 syn match     rustFuncParam   "(\w\(\w\)*:\s"he=e-2,hs=s+1
 syn match     rustFuncParam   "^\s*[_\-a-zA-Z0-9]\([_\-a-zA-Z0-9]\)*,$"he=e-1,me=e-1 contains=rustIdentifier
 
-syn keyword   rustKeyword impl nextgroup=rustImplIdent skipwhite skipempty
-syn keyword   rustKeyword for nextgroup=rustImplIdent skipwhite skipempty
 syn keyword   rustKeyword pub nextgroup=rustFuncParam skipwhite skipempty
 
 " This is merely a convention; note also the use of [A-Z], restricting it to
 " latin identifiers rather than the full Unicode uppercase. I have not used
 " [:upper:] as it depends upon 'noignorecase'
-"syn match     rustCapsIdent    display "[A-Z]\w\(\w\)*"
+syn match     rustCapsIdent    display "[A-Z]\l\(\w\)*"
 
 syn match     rustOperator     display "\%(+\|-\|/\|*\|=\|\^\|&\||\|!\|>\|<\|%\)=\?"
 " This one isn't *quite* right, as we could have binary-& with a reference
@@ -322,7 +320,7 @@ hi def link rustReservedKeyword Error
 hi def link rustRepeat        Conditional
 hi def link rustConditional   Conditional
 hi def link rustIdentifier    Identifier
-hi def link rustCapsIdent     rustIdentifier
+hi def link rustCapsIdent     Type
 hi def link rustModPath       Include
 hi def link rustModPathSep    Delimiter
 hi def link rustFunction      Function
